@@ -1,150 +1,81 @@
-const searchBtn = document.getElementById("search-btn"),
-  searchField = document.getElementById("search-field");
-const resultArea = document.getElementById("result-container");
+// Add an event listener the input field
+const searchField = document.getElementById("search-field");
+let evenSea = searchField.addEventListener("keyup", function (event) {
 
-// A temp variable to store the github username
-let githubUsername = null;
+    // Reset result area
+    const resultArea = document.getElementById("result-container");
+    resultArea.innerText = "";
+    resultArea.style.border = "none";
 
-// Add event listener on the btn
-searchBtn.addEventListener("click", function () {
-  // Reset result area
-  resultArea.innerText = "";
-  resultArea.style.border = "none";
+  // When the user press "Enter", in keyboard
+  if (event.key === "Enter") {
+    const profileName = searchField.value;
 
-  // Get the field input form the user and store in a variable
-  let inputUsername = searchField.value;
-
-  // Validate the input
-  if (
-    inputUsername.length > 0 &&
-    inputUsername != undefined &&
-    inputUsername.length != ""
-  ) {
-    // Get a clean input
-    githubUsername = inputUsername.trim();
-
-    // A variable to hold the XHR request from the github api
-    let githubApiRequest = new XMLHttpRequest();
-
-    try {
-      // Start to send a request
-      githubApiRequest.onreadystatechange = function () {
-        // While the request process display a loading spinner
-        displaySpinner();
-
-        // If a profile is found
-        if (this.readyState === 4 && this.status === 200) {
-          setTimeout(function () {
-            // Remove spinner
-            removeSpinner();
-
-            // Convert the json response text to a javascript object
-            let objectData = JSON.parse(githubApiRequest.response);
-
-            // Send the response data, to handle them
-            processData(objectData);
-          }, 2000);
-        }
-        // If a profile isn't found
-        else {
-          setTimeout(function () {
-            // Remove spinner
-            removeSpinner();
-
-            // A flashed not found message
-            showNotFound();
-          }, 2000);
-        }
-      };
-      // A get request with the profile name and async is true
-      githubApiRequest.open(
-        "GET",
-        `https://api.github.com/users/${githubUsername}`,
-        true
-      );
-
-      githubApiRequest.send();
-    } catch (e) {
-      console.log("ERROR");
-    }
+    getProfile(profileName);
   }
 });
 
-// Utilities functions
-function displaySpinner() {
-  // Created a new div and add class spinner
-  let spinner = document.createElement("div");
-  spinner.className = "spinner";
+/*
+    - Pre-conditions
+        = Get user and repos info.
 
-  // Get a reference of the spinner, to check if it is exit or not
-  let spinnerInAction = resultArea.querySelector(".spinner");
+    - Post-conditions
+        = Display them in the result div
+*/
+function displayDataInResultDiv(profileData, reposData) {
 
-  // If the spinner doesn't exist, then add it
-  if (!spinnerInAction) {
-    resultArea.appendChild(spinner);
-  }
-}
+    const resultArea = document.getElementById("result-container");
+    // Remove and data before insert any new data
+    resultArea.innerText = "";
 
-function removeSpinner() {
-  // Get a reference of the spinner, to check if it is exit or not
-  let spinnerInAction = resultArea.querySelector(".spinner");
+    // A new div to hold all data
+    let successData = createNewElement("div", "success-data");
 
-  // If the spinner exist, remove it
-  if (spinnerInAction) {
-    resultArea.removeChild(spinnerInAction);
-  }
-}
+    // A row to hold each data
+    let row = createNewElement("div", "");
 
-function processData(apiData) {
-  // Remove and data before insert any new data
-  resultArea.innerText = "";
+    // Set the profile avatar
+    let avatarContainer = createNewElement("div", "avatar-container");
+    
+    // Avatar data
+    let userAvatar = createNewElement("img", "");
+    userAvatar.id = "user-avatar";
+    userAvatar.src = profileData.avatar_url;
+    userAvatar.alt = "The user avatar on Github";
 
-  // Create a data container
-  let successData = document.createElement("div");
-  successData.className = "success-data";
+    // Put the image inside its container
+    avatarContainer.appendChild(userAvatar);
 
-  // A row to hold each data
-  let row = document.createElement("div");
+    // Append container image in the data area
+    successData.appendChild(avatarContainer);
 
-  // Set the profile avatar
-  let avatarContainer = document.createElement("div");
-  avatarContainer.className = "avatar-container";
+    // Collect the required data in a hashmap. A key-value pairs
+    let userData = new Map();
 
-  // Avatar data
-  let userAvatar = document.createElement("img");
-  userAvatar.id = "user-avatar";
-  userAvatar.src = apiData.avatar_url;
-  userAvatar.alt = "The user avatar on Github";
+    userData.set(
+        "Github link",
+        `<a href="${profileData.html_url}" target="_blank">${profileData.html_url}</a>`
+    );
+    userData.set("name", profileData.name ? profileData.name : "None");
+    userData.set("email", profileData.email ? profileData.email : "None");
+    userData.set("location", profileData.location ? profileData.location : "None");
+    userData.set("company", profileData.company ? profileData.company : "None");
+    userData.set("bio", profileData.bio ? profileData.bio : "None");
+    userData.set("followers", Number.parseInt(profileData.followers));
+    userData.set("following", Number.parseInt(profileData.following));
+    userData.set("created at", profileData.created_at);
+    userData.set("repositories count", Number.parseInt(profileData.public_repos));
 
-  // Put the image inside its container
-  avatarContainer.appendChild(userAvatar);
+    //Modify date of creation
+    let newDate = new Date(userData.get("created at"));
+    userData.set("created at", `${newDate.getDay() + 1} - ${newDate.getMonth() + 1} - ${newDate.getFullYear()}`);
 
-  // Append container image in the data area
-  successData.appendChild(avatarContainer);
-
-  // Collect the required data in a hashmap. A key-value pairs
-  let userData = new Map();
-
-  userData.set(
-    "Github link",
-    `<a href="${apiData.html_url}" target="_blank">${apiData.html_url}</a>`
-  );
-  userData.set("name", apiData.name);
-  userData.set("email", apiData.email ? apiData.email : "None");
-  userData.set("location", apiData.location ? apiData.location : "None");
-  userData.set("company", apiData.company ? apiData.company : "None");
-  userData.set("bio", apiData.bio ? apiData.bio : "None");
-  userData.set("followers", Number.parseInt(apiData.followers));
-  userData.set("following", Number.parseInt(apiData.following));
-  userData.set("created at", apiData.created_at);
-  userData.set("repositories count", Number.parseInt(apiData.public_repos));
-
-  // Loop over all data to insert them in the data area
+    // Loop over all data to insert them in the data area
   for ([key, value] of userData) {
     // Copy the key to a variable
     let dataKey = key;
 
-    row = document.createElement("div");
+    row = createNewElement("div", "");
 
     // Clean the key "data descriptor" from any space and replace it a dash to make a prober class name
     // Ex: key = name -> name
@@ -157,7 +88,7 @@ function processData(apiData) {
 
     // A Data descriptor for each data
     // Ex: key = name -> Name
-    let dataDescriptorContainer = document.createElement("span");
+    let dataDescriptorContainer = createNewElement("span", "");
     let dataDescriptor = dataKey.replace(dataKey[0], dataKey[0].toUpperCase());
 
     // Append the data descriptor to a span
@@ -171,60 +102,220 @@ function processData(apiData) {
     successData.appendChild(row);
   }
 
-  // Collect the user repos, if they are exist
-  let userRepos = new Map();
+  let reposLength = reposData.length;
 
-  // Fetch user repositories
-  fetch(`https://api.github.com/users/${githubUsername}/repos`)
-    .then((res) => res.json()) // Convert data to js object
-    .then((data) => {
-      lenData = data.length;
+  // Handle repositories data
+  if(reposLength > 0)
+  {
+    // Create a repos container
+    let ulRepos = document.createElement("ul");
+    ulRepos.className = "repos";
 
-      if (lenData > 0) {
-        // Create a repos container
-        let ulRepos = document.createElement("ul");
-        ulRepos.className = "repos";
+    // Add each repo to a <li>
+    for (let i = 0; i < reposLength; i++) {
+    let liRepo = document.createElement("li");
 
-        for (let i = 0; i < lenData; i++) {
-          let liRepo = document.createElement("li");
+    liRepo.innerHTML = `${reposData[i].name} : <a href="${reposData[i].html_url}" target="_blank">${reposData[i].html_url}</a>`;
 
-          liRepo.innerHTML = `${data[i].name} : <a href="${data[i].html_url}" target="_blank">${data[i].html_url}</a>`;
+    ulRepos.appendChild(liRepo);
+    }
 
-          ulRepos.appendChild(liRepo);
-        }
-
-        row.appendChild(ulRepos);
-        successData.appendChild(row);
-      }
-    });
+    row.appendChild(ulRepos);
+    successData.appendChild(row);
+  }
 
   // Add everything inside the result area, and show the border
   resultArea.style.border = "2px solid #585656";
   resultArea.appendChild(successData);
 }
 
+/*
+    - Pre-conditions
+        = No profile isn't exist.
+
+    - Post-conditions
+        = Display no found div
+*/
 function showNotFound() {
-  // Remove and data before insert any new data
-  resultArea.innerText = "";
 
-  // Create a data container
-  let failureData = document.createElement("div");
-  failureData.className = "failure-data";
+    const resultArea = document.getElementById("result-container");
 
-  // 404 message
-  let notFound = document.createElement("div");
-  notFound.className = "not-found";
-  notFound.innerText = "404";
+    // Create a data container
+    let failureData = createNewElement("div", "failure-data");
 
-  // An error message
-  let errorMessage = document.createElement("div");
-  errorMessage.className = "message";
-  errorMessage.innerText = "The profile is not found";
+    // 404 message
+    let notFound = createNewElement("div", "not-found");
+    notFound.innerText = "404";
+  
+    // An error message
+    let errorMessage = createNewElement("div", "message");
+    errorMessage.className = "message";
+    errorMessage.innerText = "The profile is not found";
+  
+    failureData.appendChild(notFound);
+    failureData.appendChild(errorMessage);
+  
+    // Add everything inside the result area, and show the border
+    resultArea.style.border = "2px solid #585656";
+    resultArea.appendChild(failureData);
+  }
 
-  failureData.appendChild(notFound);
-  failureData.appendChild(errorMessage);
+/*
+    - Pre-conditions
+        = None
 
-  // Add everything inside the result area, and show the border
-  resultArea.style.border = "2px solid #585656";
-  resultArea.appendChild(failureData);
+    - Post-conditions
+        = Create a new html element with class
+*/
+function createNewElement(element, classNam) {
+
+  let htmlElement = document.createElement(element);
+
+  if (classNam.length > 0) {
+    htmlElement.className = classNam;
+  }
+
+  return htmlElement;
+}
+
+/*
+    - Pre-conditions
+        = You have a message you want to display in specific place.
+
+    - Post-conditions
+        = Show the message in the message section.
+*/
+function showMessage(position, msg) {
+    // Get a reference to the message section
+    const messageSection = document.querySelector(position);
+
+    // Display the message
+    messageSection.innerText = msg;
+}
+
+/*
+    - Pre-conditions
+        = None
+
+    - Post-conditions
+        = Display a loading spinner
+*/
+function displaySpinner() {
+
+    const resultArea = document.getElementById("result-container");
+
+    // Created a new div and add a class called spinner
+    let spinner = document.createElement("div");
+    spinner.className = "spinner";
+
+    // Get a reference of the spinner, to check if it is exit or not
+    let spinnerInAction = resultArea.querySelector(".spinner");
+
+    // If the spinner doesn't exist, then add it
+    if (!spinnerInAction) {
+        resultArea.appendChild(spinner);
+    }
+}
+
+/*
+    - Pre-conditions
+        = A spinner is exist
+
+    - Post-conditions
+        = Remove the spinner if exist
+*/
+function removeSpinner() {
+
+    const resultArea = document.getElementById("result-container");
+    // Remove and data before insert any new data
+    resultArea.innerText = "";
+
+  // Get a reference of the spinner, to check if it is exit or not
+  let spinnerInAction = resultArea.querySelector(".spinner");
+
+  // If the spinner exist, remove it
+  if (spinnerInAction) {
+    resultArea.removeChild(spinnerInAction);
+  }
+}
+
+/*
+    - Pre-conditions
+        = Provide a profile name.
+
+    - Post-conditions
+        = Return true if it's valid, else return false.
+*/
+function validateProfileName(profileName) {
+  if (
+    profileName.length > 0 &&
+    profileName != null &&
+    profileName != undefined
+  ) {
+    return true;
+  }
+
+  showMessage(
+    "#search-container .message",
+    "Error: Profile name is not valid."
+  );
+
+  return false;
+}
+
+/*
+    - Pre-conditions
+        = Provide a valid username, in the input field.
+
+    - Post-conditions
+        = Get user profile using github api.
+*/
+function getProfile(profileName) {
+
+  if (validateProfileName(profileName)) {
+
+    // Clear any error messages
+    showMessage("#search-container .message", "");
+
+    // Get a clean input without spaces
+    let name = profileName.trim();
+
+    // Make an ajax call to the github api
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      displaySpinner();
+
+      // If a profile is found
+      if (this.readyState === 4 && this.status === 200) {
+        setTimeout(function () {
+            // Remove spinner
+            removeSpinner();
+
+            // Convert the json response to a javascript object
+            let profileData = JSON.parse(xhr.response);
+
+            // Additional xhr to fetch the user repositories
+            fetch(`https://api.github.com/users/${name}/repos`)
+            .then( response => response.json() ) // Convert data to a js object
+            .then( responseData => displayDataInResultDiv(profileData, responseData) ); // Send both profile and repo data to display them.
+        }, 2000);
+      }
+      // If a profile isn't found
+      else if (this.status === 404) {
+        setTimeout(function () {
+
+          removeSpinner();
+
+          // A flashed not found message
+          showNotFound();
+
+        }, 2000);
+      }
+    };
+
+    // A get request with the profile name and async is true
+    xhr.open("GET", `https://api.github.com/users/${name}`, true);
+
+    xhr.send();
+  }
 }

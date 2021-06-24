@@ -13,6 +13,11 @@ html, body {
   text-align: center;
 }
 
+.heading h1 {
+  text-transform: capitalize;
+  color: #2ea650;
+}
+
 #search-container {
   /* background-color: blueviolet; */
   display: flex;
@@ -33,11 +38,17 @@ html, body {
 
 #search-container .search-field-container #search-field {
   width: 50%;
-  padding: 10px;
+  padding: 15px;
   border-radius: 30px;
   border-style: none;
   filter: drop-shadow(0px 2px 3px #585656);
   transition: outline 0.3s ease-in-out;
+  font-weight: bold;
+  color: #585656;
+}
+
+#search-container .search-field-container #search-field::placeholder {
+  font-weight: bold;
 }
 
 #search-container #search-field:focus {

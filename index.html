@@ -15,13 +15,16 @@
         <p class="description">Find any Github profile, in any time</p>
     </header>
     
+    <!-- Search field -->
     <div id="search-container">
         <div class="search-field-container">
-            <input type="text" id="search-field" placeholder="Github User">
+            <input type="text" id="search-field" placeholder="Github User" autofocus>
         </div>
-        <button id="search-btn">Search</button>
+        <!-- <button id="search-btn">Search</button> -->
+        <div class="message"></div>
     </div>
 
+    <!-- Results div, success or failure data will show here -->
     <div id="result-container"></div>
     
     <script src="js/script.js"></script>
