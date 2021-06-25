@@ -19,25 +19,32 @@ html, body {
 }
 
 #search-container {
-  /* background-color: blueviolet; */
   display: flex;
   flex-direction: column;
   padding: 10px;
   text-align: center;
   height: 100px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
 #search-container .search-field-container {
-  /* background-color: #585656; */
-  width: 100%;
-  margin: auto;
-  padding: 10px;
+  width: 50%;
+  position: relative;
+}
+
+#search-container .search-field-container #search-icon
+{
+  position: absolute;
+  width: 25px;
+  z-index: 4;
+  bottom: 25%;
+  right: 10px;
+  cursor: pointer;
 }
 
 #search-container .search-field-container #search-field {
-  width: 50%;
+  width: 100%;
   padding: 15px;
   border-radius: 30px;
   border-style: none;

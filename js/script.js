@@ -1,19 +1,44 @@
 // Add an event listener the input field
 const searchField = document.getElementById("search-field");
-let evenSea = searchField.addEventListener("keyup", function (event) {
+searchField.addEventListener("keyup", function (event) {
 
     // Reset result area
-    const resultArea = document.getElementById("result-container");
-    resultArea.innerText = "";
-    resultArea.style.border = "none";
+    resetResultArea()
 
   // When the user press "Enter", in keyboard
   if (event.key === "Enter") {
+
     const profileName = searchField.value;
 
     getProfile(profileName);
   }
+
 });
+
+const searchIcon = document.getElementById("search-icon");
+searchIcon.addEventListener("click", function () {
+
+  // Reset result area
+  resetResultArea()
+  
+  const profileName = searchField.value;
+  
+  getProfile(profileName);
+  
+});
+
+/*
+    - Pre-conditions
+        = None
+
+    - Post-conditions
+        = Remove and data, styles.
+*/
+function resetResultArea() {
+  const resultArea = document.getElementById("result-container");
+  resultArea.innerText = "";
+  resultArea.style.border = "none";
+}
 
 /*
     - Pre-conditions
