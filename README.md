@@ -50,19 +50,20 @@ Here, AJAX plays a great role. AJAX can get data from the server using **HTTP** 
 
   1. [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
 
-     
-
   2. [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
   #### jQuery 
 
-  jQuery has two ways to make AJAX calls:
+  jQuery has many ways to make AJAX calls:
 
   1. [jQuery.ajax()](https://api.jquery.com/jquery.ajax/)
 
-     
-
   2. [jQuery.get()](https://api.jquery.com/jquery.get/)
+
+  3. [jQuery.post()](https://api.jquery.com/jquery.post/)
+
+  4. [jQuery.getJSON()](https://api.jquery.com/jquery.getjson/)
+
 
 ## Background
 
