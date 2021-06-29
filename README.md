@@ -59,7 +59,7 @@ Here, AJAX plays a great role. AJAX can get data from the server using **HTTP** 
   1. [jQuery.ajax()](https://api.jquery.com/jquery.ajax/)
 
   2. [jQuery.get()](https://api.jquery.com/jquery.get/)
-
+  
   3. [jQuery.post()](https://api.jquery.com/jquery.post/)
 
   4. [jQuery.getJSON()](https://api.jquery.com/jquery.getjson/)
