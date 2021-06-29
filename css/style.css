@@ -1,21 +1,70 @@
 html, body {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: 50px 0px;
+  position: relative;
 }
 
 * {
   box-sizing: border-box;
 }
 
+/* Theme of the app */
+body.light {
+  background-color: #ffffff;
+}
+
+body.dark {
+  background-color: #121212;
+}
+
+body {
+  transition: background-color 0.6s ease-in-out;
+}
+
+.theme {
+  position: absolute;
+  right: 25px;
+  top: -45px;
+}
+
+.theme li {
+  display: inline-block;
+  cursor: pointer;
+  transition: font-size 0.5s ease-in-out;
+  background-color: #2ea650;
+  filter: drop-shadow(1px 1px 1px #000000);
+  padding: 10px;
+}
+
+.theme li.light {
+  color: #ffffff;
+}
+
+.theme li.dark {
+  color: #121212;
+}
+
+.theme li:hover {
+  font-size: 1.5rem;
+}
+
 .heading {
-  margin: auto;
+  margin: 50px 0px 0px;
   text-align: center;
 }
 
 .heading h1 {
   text-transform: capitalize;
   color: #2ea650;
+}
+
+/* App theme */
+body.dark .heading .description {
+  color: #ffffff;
+}
+
+body.light .heading .description {
+  color: #121212;
 }
 
 #search-container {
@@ -64,7 +113,6 @@ html, body {
 
 #result-container {
   margin: 30px auto;
-  /* background-color: orangered; */
   padding: 15px;
   width: 50%;
 }
@@ -104,6 +152,15 @@ html, body {
 
 .message {
   font-size: 1rem;
+}
+
+/* App theme */
+body.dark .success-data {
+  color: #ffffff;
+}
+
+body.light .success-data {
+  color: #121212;
 }
 
 /* The Spinner */

@@ -8,25 +8,30 @@
     <link rel="shortcut icon" href="favicon.png" sizes="512x512" type="image/png">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    
-    <header class="heading">
-        <h1 class="page-heading">Github profile finder</h1>
-        <p class="description">Find any Github profile, in any time</p>
-    </header>
-    
-    <!-- Search field -->
-    <div id="search-container">
-        <div class="search-field-container">
-            <img src="image/search.png" id="search-icon">
-            <input type="text" id="search-field" placeholder="Github User" autofocus>
-        </div>
-        <!-- <button id="search-btn">Search</button> -->
-        <div class="message"></div>
-    </div>
+<body class="light">
+    <ul class="theme">
+        <li class="light">Light</li>
+        <li class="dark">Dark</li>
+    </ul>
 
-    <!-- Results div, success or failure data will show here -->
-    <div id="result-container"></div>
+    <div class="container">
+        <header class="heading">
+            <h1 class="page-heading">Github profile finder</h1>
+            <p class="description">Find any Github profile, in any time</p>
+        </header>
+        
+        <!-- Search field -->
+        <div id="search-container">
+            <div class="search-field-container">
+                <img src="image/search.png" id="search-icon">
+                <input type="text" id="search-field" placeholder="Github User" autofocus>
+            </div>
+            <!-- <button id="search-btn">Search</button> -->
+            <div class="message"></div>
+        </div>
+        <!-- Results div, success or failure data will show here -->
+        <div id="result-container"></div>
+    </div>
     
     <script src="js/script.js"></script>
 </body>

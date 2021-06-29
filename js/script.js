@@ -1,3 +1,17 @@
+// Load theme
+const body = document.querySelector("body");
+window.addEventListener('DOMContentLoaded', () => {
+  let cookie = document.cookie;
+
+  if(cookie.length > 0)
+  {
+    // Get user color from the cookies
+    let userTheme = cookie.split(";")[0].split("=")[1];
+    body.className = userTheme;
+  }
+
+});
+
 // Add an event listener the input field
 const searchField = document.getElementById("search-field");
 searchField.addEventListener("keyup", function (event) {
@@ -13,6 +27,37 @@ searchField.addEventListener("keyup", function (event) {
     getProfile(profileName);
   }
 
+});
+
+// Add an event listener to both dark and light button
+const lightBtn = document.querySelector(".theme .light");
+lightBtn.addEventListener("click", function () {
+
+  if(this != null)
+  {
+    const light = "light";
+
+    body.className = "";
+    body.className = light;
+
+    // Store theme in a cookie
+    document.cookie = `mode=${light}; expires=Fri, 18 Dec 9999 12:00:00 UTC; path=/;`;
+  }
+
+});
+
+const darkBtn = document.querySelector(".theme .dark");
+darkBtn.addEventListener("click", function () {
+  if(this != null)
+  {
+    const dark = "dark";
+
+    body.className = "";
+    body.className = dark;
+
+    // Store theme in a cookie
+    document.cookie = `mode=${dark}; expires=Fri, 18 Dec 9999 12:00:00 UTC; path=/;`;
+  }
 });
 
 const searchIcon = document.getElementById("search-icon");
