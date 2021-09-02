@@ -1,4 +1,4 @@
-# GitHub profile finder
+# GitHub Profile Finder [Live Demo](https://github-profile-finder-11188.netlify.app/)
 
 A simple web application that retrieves a GitHub profile with its repositories.
 
