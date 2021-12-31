@@ -3,6 +3,6 @@ dist/
 .vscode/
 public/
 logic/
-
+.env
 # My temp
 temp/
