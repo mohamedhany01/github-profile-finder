@@ -1,0 +1,190 @@
+@use "../abstracts";
+
+body.light {
+  background-color: abstracts.$milkyWhite;
+  transition: background-color 0.5s ease-in;
+}
+
+body.dark {
+  background-color: abstracts.$blackDark;
+  transition: background-color 0.5s ease-in;
+}
+
+figure {
+  figcaption {
+    color: abstracts.$primary;
+    font-weight: 700;
+  }
+}
+
+.search-header {
+  p {
+    color: abstracts.$primary;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.5rem;
+  }
+}
+
+form {
+  input {
+    &[name="profile"] {
+      min-width: 50%;
+      padding: 0.8rem;
+      outline: none;
+      border: none;
+      border-radius: 0.2rem;
+      box-shadow: 0px 1px 5px -1px abstracts.$primary;
+      color: abstracts.$primary;
+    }
+  }
+
+  .message {
+    margin: 0.5rem 0rem;
+    height: 0rem;
+  }
+
+  .message.active {
+    height: 1.5rem;
+    color: abstracts.$red;
+    transition: height 0.4s ease-in;
+  }
+}
+
+.result-area-container {
+  min-width: 50%;
+  max-width: 70%;
+}
+
+.response-data {
+  h2 {
+    a {
+      color: abstracts.$primary;
+    }
+  }
+
+  details {
+    background-color: abstracts.$white;
+    margin: 2rem 0rem;
+
+    summary {
+      background-color: abstracts.$primaryDark;
+      color: abstracts.$white;
+      font-weight: 700;
+      text-align: start;
+      padding: 10px;
+      transition: background-color 0.2s ease-in;
+
+      &:hover {
+        background-color: abstracts.$primary;
+      }
+
+      &::marker {
+        color: abstracts.$white;
+        font-size: 1.2em;
+      }
+    }
+
+    img {
+      border-color: abstracts.$primaryDark;
+    }
+
+    div.row > span,
+    div > span {
+      color: abstracts.$primary;
+    }
+
+    div.row > span + p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+body.light {
+  form {
+    input {
+      &[name="profile"] {
+        box-shadow: 0px 1px 5px -1px abstracts.$blackLight;
+      }
+    }
+  }
+
+  .response-data {
+    details {
+      box-shadow: 0px 1px 5px -1px abstracts.$blackLight;
+    }
+  }
+}
+
+body.dark {
+  form {
+    input {
+      &[name="profile"] {
+        box-shadow: 0px 1px 5px -1px abstracts.$primary;
+      }
+    }
+  }
+
+  .response-data {
+    details {
+      box-shadow: 0px 1px 5px -1px abstracts.$primary;
+    }
+  }
+}
+
+// Spinner
+.loading-spinner {
+  height: 4em;
+}
+
+.spinner,
+.spinner:before,
+.spinner:after {
+  background: abstracts.$primary;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.spinner {
+  color: abstracts.$primary;
+  text-indent: -9999em;
+  margin: 88px auto;
+  position: relative;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.spinner:before,
+.spinner:after {
+  position: absolute;
+  top: 0;
+  content: "";
+}
+.spinner:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.spinner:after {
+  left: 1.5em;
+}
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+    background-color: abstracts.$primary;
+    color: abstracts.$primary;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+    background-color: abstracts.$primaryDark;
+    color: abstracts.$primaryDark;
+  }
+}

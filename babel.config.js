@@ -3,4 +3,5 @@ module.exports = {
     "@babel/preset-env",
     ["@babel/preset-react", { runtime: "automatic" }], // Add (import React from "react") automatically
   ],
+  plugins: [["@babel/transform-runtime"]],
 };

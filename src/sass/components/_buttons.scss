@@ -1,0 +1,62 @@
+@use "../abstracts";
+
+.btn-app-primary {
+  color: abstracts.$milkyWhite;
+  background-color: abstracts.$primary;
+  outline: none;
+  min-width: 20%;
+  padding: 0.5rem;
+  border: 1px solid abstracts.$primaryDark;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  transition: background-color 0.3s ease-in;
+
+  &:hover {
+    color: abstracts.$white;
+    background-color: abstracts.$primaryDark;   
+    border: 1px solid abstracts.$primary;
+  }
+}
+
+.btn-app-mode-light {
+  color: abstracts.$milkyWhite;
+  background-color: abstracts.$primary;
+  outline: none;
+  min-width: 20%;
+  padding: 0.5rem;
+  border: 1px solid abstracts.$primaryDark;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  transition: background-color 0.3s ease-in;
+
+  &:hover {
+    color: abstracts.$white;
+    background-color: abstracts.$primaryDark;   
+    border: 1px solid abstracts.$primary;
+  }
+}
+
+.btn-app-mode-dark {
+  color: abstracts.$milkyWhite;
+  background-color: abstracts.$primary;
+  outline: none;
+  min-width: 20%;
+  padding: 0.5rem;
+  border: 1px solid abstracts.$primaryDark;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  transition: background-color 0.3s ease-in;
+
+  &:hover {
+    color: abstracts.$white;
+    background-color: abstracts.$primaryDark;   
+    border: 1px solid abstracts.$primary;
+  }
+}
+
+
+
+
