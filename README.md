@@ -3,6 +3,14 @@
 A simple web application that retrieves a GitHub profile with its repositories.
 
 ***
+## Screenshots
+- The new app
+![new-app-light](https://user-images.githubusercontent.com/61619208/147833554-0e5b6d22-bee3-44ff-9525-a2e7ff1236c8.png)
+![new-app-dark](https://user-images.githubusercontent.com/61619208/147833561-0ec48518-4a54-400d-9f71-fb5d224839d3.png)
+
+- The old app
+![old-app-light](https://user-images.githubusercontent.com/61619208/147833588-031f2552-09f1-43a1-b523-463cd8888841.png)
+![old-app-dark](https://user-images.githubusercontent.com/61619208/147833590-de656d4f-8a10-4c7f-824d-5ed20117b0c9.png)
 
 ## Introduction
 
@@ -74,7 +82,7 @@ Simply, enter the profile name in the search box and wait, if the app found a va
 
 ## Technologies
 
-This application was built using: HTML, CSS, React JS, AJAX, APIs"REST APIs" of GitHub.
+This application was built using: HTML, SASS, React JS, AJAX/Axios, APIs"REST APIs" of GitHub.
 
 ## Installation/Run
 
