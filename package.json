@@ -1,7 +1,7 @@
 {
   "name": "github-profile-finder",
   "scripts": {
-    "build": "webpack --config config/webpack.prod.js && echo '/* /index.html 200' | cat > ./dist/'_redirects'",
+    "build": "NODE_ENV=production webpack --config config/webpack.prod.js && echo '/* /index.html 200' | cat > ./dist/'_redirects'",
     "start": "webpack serve --config config/webpack.dev.js"
   },
   "devDependencies": {

@@ -90,7 +90,7 @@ const ProfileData = () => {
             <div className="row">
               <span className="fw-700 mb-1">Twitter:</span>
               <p className="ms-2">
-                {appState.APIData ? (
+                {appState.APIData.twitter_username ? (
                   <a
                     className="text-decoration-none"
                     href={`https://twitter.com/${appState.APIData.twitter_username}`}

@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const Dotenv = require("dotenv-webpack");
 const path = require("path");
 const webpack = require("webpack");
 
@@ -75,11 +74,10 @@ module.exports = {
       favicon: "./src/favicon.png",
       template: "./src/index.html",
     }),
-    new Dotenv({
-      path: ".env",
-    }),
     new webpack.DefinePlugin({
-      "process": JSON.stringify(process.env),
+      "process.env": {
+        "GITHUB_API_USERS":JSON.stringify(process.env.GITHUB_API_USERS),
+      },
     }),
   ],
   /*
