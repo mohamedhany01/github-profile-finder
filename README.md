@@ -1,16 +1,26 @@
 # GitHub Profile Finder [< Live Demo >](https://github-profile-finder-11188.netlify.app/)
 
-A simple web application that retrieves a GitHub profile with its repositories.
+Simple web application that uses Github APIs to fetch a profile of a specific user, implemented using React JS
 
 ***
-## Screenshots
-- The new app
-![new-app-light](https://user-images.githubusercontent.com/61619208/147855274-92932659-5f5c-442b-a05f-2eba9d6c9501.png)
-![new-app-dark](https://user-images.githubusercontent.com/61619208/147855277-03fd32de-01ed-4bf7-9988-3625e6816ff3.png)
 
-- The old app
-![old-app-light](https://user-images.githubusercontent.com/61619208/147833588-031f2552-09f1-43a1-b523-463cd8888841.png)
-![old-app-dark](https://user-images.githubusercontent.com/61619208/147833590-de656d4f-8a10-4c7f-824d-5ed20117b0c9.png)
+## Table of contents
+
+* [Overview](#overview)
+  * [Introduction](#introduction)
+  * [Background](#background)
+  * [Responsibilities](#responsibilities)
+  * [Screenshots](#screenshots)
+  * [Terminologies](#terminologies)
+  * [AJAX Internally](#ajax-internally)
+* [Technologies](#technologies)
+* [Installation](#installation)
+
+***
+
+## Overview
+
+***
 
 ## Introduction
 
@@ -25,6 +35,40 @@ The HTTP protocol is a transport files protocol , it's the main engine between t
 Although, the HTTP has this power, it lacks to saving the state "stateless". If you request data from the server, and you refresh the page the data will be lost and you will do the process of request again. Simply, the HTTP doesn't have a mechanism to save the state of a request.
 
 Here, AJAX plays a great role. AJAX can get data from the server using **HTTP** and updating the page with the new data using JavaScript, CSS, and HTML, without refreshing the page.
+
+***
+
+## Background
+
+By using AJAX and the REST APIs architecture of GitHub, I created a simple app that retrieves a GitHub profile with its repositories, without refresh the webpage.
+
+Simply, enter the profile name in the search box and wait, if the app found a valid profile it will display it in the DOM without refreshing the page, else a not found message is displayed.
+
+***
+
+## Responsibilities
+
+* Designed the user interface "UI" using HTML/JSX, React/JavaScript, CSS/SASS.
+* Applied some user experience "UX" concepts to make a smooth experience for the app end-user.
+* Used modern sans-serif fonts to enhance the application design.
+* Applied some web animations using CSS/JavaScript to enhance user experience.
+* Use HTML semantics elements to improve web accessibility and search engine optimization "SEO".
+* Used PostCSS/Autoprefixer to solve cross-browser issues.
+* Bundled the application files using Webpack 5. And used Babel to transpile application JavaScript/ES Next to a backwards compatible code to support old browsers.
+* Taking design responsive in mind.
+* Fetching API data from the server. And populate the user interface in the browser.
+
+***
+
+## Screenshots
+
+* The new app
+![new-app-light](https://user-images.githubusercontent.com/61619208/147855274-92932659-5f5c-442b-a05f-2eba9d6c9501.png)
+![new-app-dark](https://user-images.githubusercontent.com/61619208/147855277-03fd32de-01ed-4bf7-9988-3625e6816ff3.png)
+
+* The old app
+![old-app-light](https://user-images.githubusercontent.com/61619208/147833588-031f2552-09f1-43a1-b523-463cd8888841.png)
+![old-app-dark](https://user-images.githubusercontent.com/61619208/147833590-de656d4f-8a10-4c7f-824d-5ed20117b0c9.png)
 
 ***
 
@@ -44,22 +88,23 @@ Here, AJAX plays a great role. AJAX can get data from the server using **HTTP** 
 
 ## AJAX Internally
 
-- ### How AJAX works?
+### How AJAX works?
 
-  - When you request data from the server, the server bring the data from some kind of database MySQL, SQL server..etc and prepares/ coverts this data to a JSON format, then sends them using HTTP.
+* When you request data from the server, the server bring the data from some kind of database MySQL, SQL server..etc and prepares/ coverts this data to a JSON format, then sends them using HTTP.
 
-  - In the client side JavaScript  receives this data as JSON format, and with using  the **Serialization** JavaScript  covert JSON to JavaScript object. Without Serialization JavaScript can not use these data.
+* In the client side JavaScript  receives this data as JSON format, and with using  the **Serialization** JavaScript  covert JSON to JavaScript object. Without Serialization JavaScript can not use these data.
 
-  - All programming languages have its implementations for the Serialization.
+* All programming languages have its implementations for the Serialization.
 
-- ### How to make AJAX calls?
+### How to make AJAX calls?
 
-  - AJAX calls are language-dependent/framework/library , each programming language/framework/library  has its way to make AJAX calls.
+* AJAX calls are language-dependent/framework/library , each programming language/framework/library  has its way to make AJAX calls.
 
-- #### React JS
+#### React JS
+
   Currently, React team does't provide a native implementation for React to support AJAX call. You can use **fetch method** or **Axios** 3rd party lib
 
-- #### JavaScript
+#### JavaScript
 
   JavaScript has two ways to make AJAX calls:
 
@@ -67,23 +112,24 @@ Here, AJAX plays a great role. AJAX can get data from the server using **HTTP** 
 
   2. [Fetch (Native/Modern)](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
-- #### jQuery
+#### jQuery
 
   jQuery has many ways to make AJAX calls:
 
   1. [jQuery.ajax()](https://api.jquery.com/jquery.ajax/)
   2. [jQuery.getJSON()](https://api.jquery.com/jquery.getjson/)
 
-## Background
-
-By using AJAX and the REST APIs architecture of GitHub, I created a simple app that retrieves a GitHub profile with its repositories, without refresh the webpage.
-
-Simply, enter the profile name in the search box and wait, if the app found a valid profile it will display it in the DOM without refreshing the page, else a not found message is displayed.
+***
 
 ## Technologies
 
 This application was built using: HTML, SASS, React JS 17, AJAX/Axios, Webpack 5 and APIs"REST APIs" of GitHub.
 
-## Installation/Run
+***
 
-Clone the repo, add .env file with GITHUB_API_USERS=https://api.github.com/users/, *cd* cloned project, *npm run build && npm run start*.
+## Installation
+
+* Clone the repo.
+* add `.env` file with `GITHUB_API_USERS=https://api.github.com/users/`
+* `cd github-profile-finder`
+* `npm run build && npm run start`.
